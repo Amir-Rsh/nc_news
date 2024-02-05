@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import Nav from "./Components/Nav";
+import { Routes, Route } from "react-router-dom";
+import axios from "axios";
+import ListOfArticles from "./Components/ListOfArticles";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://nc-news-by-amir.onrender.com/api/articles")
+      .then((response) => {
+        setArticles(response.data.articles);
+      });
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<ListOfArticles articles={articles} />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
