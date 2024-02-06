@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import Nav from "./Components/Nav";
 import { Routes, Route } from "react-router-dom";
-import axios from "axios";
 import ListOfArticles from "./Components/ListOfArticles";
+import getArticles from "../api";
 
 function App() {
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get("https://nc-news-by-amir.onrender.com/api/articles")
-      .then((response) => {
-        setArticles(response.data.articles);
-      });
+    getArticles().then(({ data: { articles } }) => {
+      setArticles(articles);
+      setIsLoading(false);
+    });
   }, []);
 
   return (
@@ -21,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ListOfArticles articles={articles} />} />
       </Routes>
+      {isLoading ? <h5>Loading the articles</h5> : null}
     </>
   );
 }

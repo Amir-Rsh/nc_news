@@ -1,6 +1,6 @@
 export default function ArticleCard({ article }) {
   return (
-    <div className="card" style={{ width: 18 + "rem" }}>
+    <div className="card h-100" style={{ width: 18 + "rem" }}>
       <img
         src={article.article_img_url}
         className="card-img-top"
