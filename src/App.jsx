@@ -3,6 +3,7 @@ import Nav from "./Components/Nav";
 import { Routes, Route } from "react-router-dom";
 import ListOfArticles from "./Components/ListOfArticles";
 import getArticles from "../api";
+import ArticlePage from "./Components/ArticlePage";
 
 function App() {
   const [articles, setArticles] = useState([]);
