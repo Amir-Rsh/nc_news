@@ -7,3 +7,9 @@ export default function getArticles() {
 export function getArticlesById(id) {
   return axios.get(`https://nc-news-by-amir.onrender.com/api/articles/${id}`);
 }
+
+export function getComments(id) {
+  return axios.get(
+    `https://nc-news-by-amir.onrender.com/api/articles/${id}/comments`
+  );
+}
