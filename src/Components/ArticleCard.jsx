@@ -1,4 +1,9 @@
-export default function ArticleCard({ article }) {
+import ArticlePage from "./ArticlePage";
+
+export default function ArticleCard({ article, setArticleId }) {
+  function handleClick() {
+    setArticleId(article.article_id);
+  }
   return (
     <div className="card h-100" style={{ width: 18 + "rem" }}>
       <img
@@ -11,6 +16,9 @@ export default function ArticleCard({ article }) {
         <h6 className="card-title">Topic: {article.topic}</h6>
         <p className="card-text">Written by: {article.author}</p>
       </div>
+      <button type="select" className="btn btn-primary" onClick={handleClick}>
+        Read
+      </button>
     </div>
   );
 }

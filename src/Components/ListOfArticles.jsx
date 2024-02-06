@@ -1,8 +1,14 @@
+import { useState } from "react";
 import ArticleCard from "./ArticleCard";
 import HomeHeader from "./HomeHeader";
+import ArticlePage from "./ArticlePage";
 
 export default function ListOfArticles({ articles }) {
-  return (
+  const [articleId, setArticleId] = useState(undefined);
+  function handleClick() {}
+  return articleId ? (
+    <ArticlePage articleId={articleId} />
+  ) : (
     <>
       <HomeHeader />
       <section>
@@ -11,7 +17,7 @@ export default function ListOfArticles({ articles }) {
             {articles.map((article) => {
               return (
                 <div className="col" key={article.article_id}>
-                  <ArticleCard article={article} />
+                  <ArticleCard article={article} setArticleId={setArticleId} />
                 </div>
               );
             })}
