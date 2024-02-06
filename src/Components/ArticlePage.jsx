@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { getArticlesById } from "../../api";
 import ArticleHeader from "./ArticleHeader";
 import { useParams } from "react-router";
+import Comments from "./Comments";
 
-export default function ArticlePage({}) {
+export default function ArticlePage() {
   const { article_id } = useParams();
   const [content, setContent] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -15,12 +16,12 @@ export default function ArticlePage({}) {
   }, []);
 
   return isLoading ? (
-    <h6>Article is loading</h6>
+    <p></p>
   ) : (
     <>
       <ArticleHeader title={content.title} author={content.author} />
 
-      <div className="card" style={{ width: "70%" }}>
+      <div className="card" style={{ width: "70%", margin: "auto" }}>
         <img src={content.article_img_url} className="card-img-top" alt="..." />
         <div className="card-body">
           <p className="card-text">{content.body}</p>
@@ -31,6 +32,7 @@ export default function ArticlePage({}) {
           </li>
         </ul>
       </div>
+      <Comments article_id={article_id} />
     </>
   );
 }
