@@ -4,13 +4,17 @@ import ArticleHeader from "./ArticleHeader";
 
 export default function ArticlePage({ articleId }) {
   const [content, setContent] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     getArticlesById(articleId).then(({ data: { article } }) => {
       setContent(article);
+      setIsLoading(false);
     });
   }, []);
 
-  return (
+  return isLoading ? (
+    <h6>Article is loading</h6>
+  ) : (
     <>
       <ArticleHeader title={content.title} author={content.author} />
 
