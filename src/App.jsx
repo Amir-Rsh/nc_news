@@ -21,6 +21,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<ListOfArticles articles={articles} />} />
+        <Route path="/articles/:article_id" element={<ArticlePage />} />
       </Routes>
       {isLoading ? <h5>Loading the articles</h5> : null}
     </>

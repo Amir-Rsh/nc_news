@@ -1,9 +1,6 @@
-import ArticlePage from "./ArticlePage";
+import { Link } from "react-router-dom";
 
-export default function ArticleCard({ article, setArticleId }) {
-  function handleClick() {
-    setArticleId(article.article_id);
-  }
+export default function ArticleCard({ article }) {
   return (
     <div className="card h-100" style={{ width: 18 + "rem" }}>
       <img
@@ -16,9 +13,11 @@ export default function ArticleCard({ article, setArticleId }) {
         <h6 className="card-title">Topic: {article.topic}</h6>
         <p className="card-text">Written by: {article.author}</p>
       </div>
-      <button type="select" className="btn btn-primary" onClick={handleClick}>
-        Read
-      </button>
+      <Link to={`/articles/${article.article_id}`}>
+        <button type="select" className="btn btn-primary">
+          Read
+        </button>
+      </Link>
     </div>
   );
 }

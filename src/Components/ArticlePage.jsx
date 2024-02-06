@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { getArticlesById } from "../../api";
 import ArticleHeader from "./ArticleHeader";
+import { useParams } from "react-router";
 
-export default function ArticlePage({ articleId }) {
+export default function ArticlePage({}) {
+  const { article_id } = useParams();
   const [content, setContent] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    getArticlesById(articleId).then(({ data: { article } }) => {
+    getArticlesById(article_id).then(({ data: { article } }) => {
       setContent(article);
       setIsLoading(false);
     });
@@ -18,13 +20,13 @@ export default function ArticlePage({ articleId }) {
     <>
       <ArticleHeader title={content.title} author={content.author} />
 
-      <div class="card" style={{ width: "70%" }}>
-        <img src={content.article_img_url} class="card-img-top" alt="..." />
-        <div class="card-body">
-          <p class="card-text">{content.body}</p>
+      <div className="card" style={{ width: "70%" }}>
+        <img src={content.article_img_url} className="card-img-top" alt="..." />
+        <div className="card-body">
+          <p className="card-text">{content.body}</p>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item">
             this article has {content.votes} votes
           </li>
         </ul>
