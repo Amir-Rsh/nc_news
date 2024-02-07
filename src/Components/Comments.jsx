@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getComments } from "../../api";
+import UserContext from "../Contexts/UserContext";
+import CommentAdder from "./CommentAdder";
 
 export default function Comments({ article_id }) {
   const [commentList, setCommentList] = useState([]);
@@ -10,6 +12,7 @@ export default function Comments({ article_id }) {
   }, []);
   return (
     <>
+      <CommentAdder />
       <h3 className="header" style={{ paddingTop: "3%" }}>
         Comments:
       </h3>
