@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getArticlesById } from "../../api";
+import { downoteArticle, getArticlesById, upvoteArticle } from "../../api";
 import ArticleHeader from "./ArticleHeader";
 import { useParams } from "react-router";
 import Comments from "./Comments";
@@ -14,6 +14,22 @@ export default function ArticlePage() {
       setIsLoading(false);
     });
   }, []);
+  function handleUpvote() {
+    setContent((cuurentContent) => {
+      const voteChange = { ...cuurentContent };
+      voteChange.votes += 1;
+      return voteChange;
+    });
+    upvoteArticle(article_id);
+  }
+  function handleDownvote() {
+    setContent((cuurentContent) => {
+      const voteChange = { ...cuurentContent };
+      voteChange.votes -= 1;
+      return voteChange;
+    });
+    downoteArticle(article_id);
+  }
 
   return isLoading ? (
     <p></p>
@@ -28,7 +44,23 @@ export default function ArticlePage() {
         </div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
-            this article has {content.votes} votes
+            this article has {content.votes} votes <br />
+            <button
+              type="button"
+              className="btn btn-success"
+              style={{ width: "6.5rem", height: "2rem" }}
+              onClick={handleUpvote}
+            >
+              upvote
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger"
+              style={{ width: "6.5rem", height: "2rem" }}
+              onClick={handleDownvote}
+            >
+              downvote
+            </button>
           </li>
         </ul>
       </div>
