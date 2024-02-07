@@ -10,9 +10,10 @@ export default function Comments({ article_id }) {
       setCommentList(response.data.comments);
     });
   }, []);
+
   return (
     <>
-      <CommentAdder />
+      <CommentAdder setCommentList={setCommentList} />
       <h3 className="header" style={{ paddingTop: "3%" }}>
         Comments:
       </h3>

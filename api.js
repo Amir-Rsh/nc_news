@@ -25,9 +25,12 @@ export function getUsers() {
   return axios.get("https://nc-news-by-amir.onrender.com/api/users");
 }
 
-export function postComment(id, username, body) {
-  axios.post(
+export function postComment(id, username, body, setCommentList) {
+  return axios.post(
     `https://nc-news-by-amir.onrender.com/api/articles/${id}/comments`,
-    { username: username, body: body }
+    {
+      username: username,
+      body: body,
+    }
   );
 }

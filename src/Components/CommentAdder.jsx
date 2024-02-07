@@ -1,19 +1,33 @@
 import { useContext, useState } from "react";
 import UserContext from "../Contexts/UserContext";
-import { postComment } from "../../api";
+import { postComment, getComments } from "../../api";
 import { useParams } from "react-router-dom";
 
-export default function CommentAdder() {
-  const { article_id } = useParams();
+export default function CommentAdder({ setCommentList }) {
   const [userInput, setUserInput] = useState("");
+  const [isError, setIsError] = useState(false);
+  const { article_id } = useParams();
   const { loggedInUser } = useContext(UserContext);
   function handleChange(event) {
     setUserInput(event.target.value);
   }
   function handlePost() {
-    postComment(article_id, loggedInUser.username, userInput);
+    const error = document.getElementById("commentError");
+    if (userInput.length < 4) {
+      error.innerText = "Please write at least 4 characters";
+    } else {
+      error.innerText = "";
 
-    setUserInput("");
+      postComment(article_id, loggedInUser.username, userInput)
+        .then(({ data: { comment } }) => {
+          setCommentList((currentComments) => [comment, ...currentComments]);
+          setUserInput("");
+          setIsError(false);
+        })
+        .catch((err) => {
+          setIsError(true);
+        });
+    }
   }
 
   return (
@@ -36,8 +50,8 @@ export default function CommentAdder() {
         rows="3"
         value={userInput}
         onChange={handleChange}
-        required
       ></textarea>
+      <p id="commentError"></p>
       <button
         type="button"
         className="btn btn-primary"
@@ -46,6 +60,9 @@ export default function CommentAdder() {
       >
         Post
       </button>
+      {isError ? (
+        <p style={{ textAlign: "center" }}>your comment cannot be posted</p>
+      ) : null}
     </div>
   );
 }
