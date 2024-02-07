@@ -10,14 +10,6 @@ export default function Nav() {
         <a className="navbar-brand" style={{ paddingRight: "2%" }}>
           Welcome to Northcoder News
         </a>
-        <a className="navbar-brand">
-          Hi, {loggedInUser.username}
-          <img
-            src={loggedInUser.avatar_url}
-            style={{ width: "2rem", height: "2rem" }}
-            alt={`avatar for ${loggedInUser.username}`}
-          />
-        </a>
 
         <button
           className="navbar-toggler"
@@ -28,15 +20,27 @@ export default function Nav() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
+          <a className="navbar-brand">
+            Hi, {loggedInUser.username}
+            <img
+              src={loggedInUser.avatar_url}
+              style={{ width: "2rem", height: "2rem" }}
+              alt={`avatar for ${loggedInUser.username}`}
+            />
+          </a>
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <Link to="/">
-              <li className="nav-item">Home</li>
+              <li className="nav-item" style={{ color: "black" }}>
+                Home
+              </li>
             </Link>
             <Link to="/users">
-              <li className="nav-item">Change user</li>
+              <li className="nav-item" style={{ color: "black" }}>
+                Change user
+              </li>
             </Link>
           </ul>
         </div>
