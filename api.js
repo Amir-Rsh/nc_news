@@ -14,16 +14,13 @@ export function getComments(id) {
   );
 }
 
-export function upvoteArticle(id) {
+export function voteArticle(id, voteNum) {
   return axios.patch(
     `https://nc-news-by-amir.onrender.com/api/articles/${id}/`,
-    { inc_votes: 1 }
+    { inc_votes: voteNum }
   );
 }
 
-export function downoteArticle(id) {
-  return axios.patch(
-    `https://nc-news-by-amir.onrender.com/api/articles/${id}/`,
-    { inc_votes: -1 }
-  );
+export function getUsers() {
+  return axios.get("https://nc-news-by-amir.onrender.com/api/users");
 }

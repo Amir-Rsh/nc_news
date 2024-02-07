@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { downoteArticle, getArticlesById, upvoteArticle } from "../../api";
+import { getArticlesById, voteArticle } from "../../api";
 import ArticleHeader from "./ArticleHeader";
 import { useParams } from "react-router";
 import Comments from "./Comments";
@@ -20,7 +20,7 @@ export default function ArticlePage() {
       voteChange.votes += 1;
       return voteChange;
     });
-    upvoteArticle(article_id);
+    voteArticle(article_id, 1);
   }
   function handleDownvote() {
     setContent((cuurentContent) => {
@@ -28,11 +28,11 @@ export default function ArticlePage() {
       voteChange.votes -= 1;
       return voteChange;
     });
-    downoteArticle(article_id);
+    voteArticle(article_id, -1);
   }
 
   return isLoading ? (
-    <p></p>
+    <h6>Article is loading</h6>
   ) : (
     <>
       <ArticleHeader title={content.title} author={content.author} />
