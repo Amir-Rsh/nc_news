@@ -13,6 +13,8 @@ export default function Comments({ article_id }) {
     });
   }, []);
   function handleDelete(event) {
+    const pendingMsg = document.getElementById(event.target.value);
+    pendingMsg.innerText = "comment is being removed";
     deleteComment(event.target.value)
       .then(() => {
         setIsError(false);
@@ -58,14 +60,17 @@ export default function Comments({ article_id }) {
                   votes: {comment.votes}
                 </p>
                 {loggedInUser.username === comment.author ? (
-                  <button
-                    type="button"
-                    className="btn btn-danger"
-                    value={comment.comment_id}
-                    onClick={handleDelete}
-                  >
-                    Delete your comment
-                  </button>
+                  <>
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      value={comment.comment_id}
+                      onClick={handleDelete}
+                    >
+                      Delete your comment
+                    </button>
+                    <p id={comment.comment_id}></p>
+                  </>
                 ) : null}
                 {isError ? (
                   <p style={{ textAlign: "center" }}>

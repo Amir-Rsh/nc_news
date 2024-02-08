@@ -7,10 +7,14 @@ export default function ListOfArticles({ articles }) {
       <HomeHeader />
       <section>
         <div className="container text-center">
-          <div className="row">
+          <div className="row" style={{ paddingBottom: "2%" }}>
             {articles.map((article) => {
               return (
-                <div className="col" key={article.article_id}>
+                <div
+                  className="col-12 col-md-6 col-lg-4 d-flex justify-content-center"
+                  style={{ justifyContent: "center" }}
+                  key={article.article_id}
+                >
                   <ArticleCard article={article} />
                 </div>
               );

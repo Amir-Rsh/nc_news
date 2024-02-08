@@ -8,7 +8,7 @@ export default function Nav() {
     <nav className="navbar bg-primary" data-bs-theme="dark">
       <div className="container-fluid">
         <a className="navbar-brand" style={{ paddingRight: "2%" }}>
-          Welcome to Northcoder News
+          Northcoders News
         </a>
 
         <button
