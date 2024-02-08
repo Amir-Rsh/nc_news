@@ -1,7 +1,9 @@
 import axios from "axios";
 
-export default function getArticles() {
-  return axios.get("https://nc-news-by-amir.onrender.com/api/articles");
+export default function getArticles(topic) {
+  return axios.get("https://nc-news-by-amir.onrender.com/api/articles", {
+    params: { topic: topic },
+  });
 }
 
 export function getArticlesById(id) {
@@ -38,11 +40,5 @@ export function postComment(id, username, body, setCommentList) {
 export function deleteComment(id) {
   return axios.delete(
     `https://nc-news-by-amir.onrender.com/api/comments/${id}`
-  );
-}
-
-export function getArticlesByTopic(topic) {
-  return axios.get(
-    `https://nc-news-by-amir.onrender.com/api/articles?topic=${topic}`
   );
 }

@@ -1,18 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import getArticles from "../../api";
 import ArticleCard from "./ArticleCard";
 import HomeHeader from "./HomeHeader";
 import { useEffect, useState } from "react";
 
 export default function ListOfArticles() {
+  const { topic } = useParams();
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    getArticles().then(({ data: { articles } }) => {
+    setIsLoading(true);
+    getArticles(topic).then(({ data: { articles } }) => {
       setArticles(articles);
       setIsLoading(false);
     });
-  }, []);
+  }, [topic]);
   return (
     <>
       <HomeHeader />
