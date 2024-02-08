@@ -37,7 +37,7 @@ export default function ArticlePage() {
     <>
       <ArticleHeader title={content.title} author={content.author} />
 
-      <div className="card" style={{ width: "70%", margin: "auto" }}>
+      <div className="card" id="articlePageCard" style={{ margin: "auto" }}>
         <img
           src={content.article_img_url}
           className="card-img-top"
