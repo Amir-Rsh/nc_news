@@ -34,3 +34,9 @@ export function postComment(id, username, body, setCommentList) {
     }
   );
 }
+
+export function deleteComment(id) {
+  return axios.delete(
+    `https://nc-news-by-amir.onrender.com/api/comments/${id}`
+  );
+}
