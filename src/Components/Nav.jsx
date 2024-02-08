@@ -7,9 +7,7 @@ export default function Nav() {
   return (
     <nav className="navbar bg-primary" data-bs-theme="dark">
       <div className="container-fluid">
-        <a className="navbar-brand" style={{ paddingRight: "2%" }}>
-          Northcoders News
-        </a>
+        <a className="navbar-brand">Northcoders News</a>
 
         <button
           className="navbar-toggler"
@@ -20,7 +18,7 @@ export default function Nav() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <a className="navbar-brand">
+          <a className="navbar-brand" style={{ fontSize: "15px" }}>
             Hi, {loggedInUser.username}
             <img
               src={loggedInUser.avatar_url}
