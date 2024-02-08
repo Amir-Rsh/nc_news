@@ -13,11 +13,11 @@ export default function CommentAdder({ setCommentList }) {
   }
   function handlePost() {
     const pendingMsg = document.getElementById("postPending");
-    pendingMsg.innerText = "your comment is being posted";
     const error = document.getElementById("commentError");
     if (userInput.length < 4) {
       error.innerText = "Please write at least 4 characters";
     } else {
+      pendingMsg.innerText = "your comment is being posted";
       error.innerText = "";
 
       postComment(article_id, loggedInUser.username, userInput)
