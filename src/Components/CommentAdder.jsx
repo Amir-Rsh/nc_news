@@ -12,6 +12,8 @@ export default function CommentAdder({ setCommentList }) {
     setUserInput(event.target.value);
   }
   function handlePost() {
+    const pendingMsg = document.getElementById("postPending");
+    pendingMsg.innerText = "your comment is being posted";
     const error = document.getElementById("commentError");
     if (userInput.length < 4) {
       error.innerText = "Please write at least 4 characters";
@@ -23,6 +25,7 @@ export default function CommentAdder({ setCommentList }) {
           setCommentList((currentComments) => [comment, ...currentComments]);
           setUserInput("");
           setIsError(false);
+          pendingMsg.innerText = "";
         })
         .catch((err) => {
           setIsError(true);
@@ -60,6 +63,7 @@ export default function CommentAdder({ setCommentList }) {
       >
         Post
       </button>
+      <p id="postPending" style={{ textAlign: "center" }}></p>
       {isError ? (
         <p style={{ textAlign: "center" }}>your comment cannot be posted</p>
       ) : null}
