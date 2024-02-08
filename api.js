@@ -40,3 +40,9 @@ export function deleteComment(id) {
     `https://nc-news-by-amir.onrender.com/api/comments/${id}`
   );
 }
+
+export function getArticlesByTopic(topic) {
+  return axios.get(
+    `https://nc-news-by-amir.onrender.com/api/articles?topic=${topic}`
+  );
+}
