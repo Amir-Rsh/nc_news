@@ -1,15 +1,31 @@
 import { useContext, useEffect, useState } from "react";
-import { getComments } from "../../api";
+import { deleteComment, getComments } from "../../api";
 import UserContext from "../Contexts/UserContext";
 import CommentAdder from "./CommentAdder";
 
 export default function Comments({ article_id }) {
+  const { loggedInUser } = useContext(UserContext);
   const [commentList, setCommentList] = useState([]);
+  const [isError, setIsError] = useState(false);
   useEffect(() => {
     getComments(article_id).then((response) => {
       setCommentList(response.data.comments);
     });
   }, []);
+  function handleDelete(event) {
+    deleteComment(event.target.value)
+      .then(() => {
+        setIsError(false);
+        setCommentList((currentCommentList) =>
+          currentCommentList.filter(
+            (comment) => comment.comment_id !== parseInt(event.target.value)
+          )
+        );
+      })
+      .catch((err) => {
+        setIsError(true);
+      });
+  }
 
   return (
     <>
@@ -41,6 +57,21 @@ export default function Comments({ article_id }) {
                 <p className="card-text" style={{ textAlign: "right" }}>
                   votes: {comment.votes}
                 </p>
+                {loggedInUser.username === comment.author ? (
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    value={comment.comment_id}
+                    onClick={handleDelete}
+                  >
+                    Delete your comment
+                  </button>
+                ) : null}
+                {isError ? (
+                  <p style={{ textAlign: "center" }}>
+                    Comment could not be deleted at this time
+                  </p>
+                ) : null}
               </div>
             </div>
           );
