@@ -24,4 +24,7 @@
   #userList {
     width: 80%;
   }
+  .navbar-brand {
+    font-size: medium;
+  }
 }

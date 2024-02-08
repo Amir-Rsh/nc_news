@@ -23,7 +23,7 @@ export default function Nav() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <a className="navbar-brand" style={{ fontSize: "15px" }}>
+          <a className="navbar-brand">
             Hi, {loggedInUser.username}
             <img
               src={loggedInUser.avatar_url}
