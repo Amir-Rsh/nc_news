@@ -42,7 +42,11 @@ export default function ArticlePage() {
           src={content.article_img_url}
           className="card-img-top"
           alt={`picture for the article about ${content.topic}`}
-          style={{ borderWidth: "20px", borderStyle: "groove" }}
+          style={{
+            borderWidth: "10px",
+            borderStyle: "groove",
+            borderColor: "lightblue",
+          }}
         />
         <div className="card-body">
           <p className="card-text">{content.body}</p>

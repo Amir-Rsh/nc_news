@@ -13,12 +13,16 @@ export default function Users() {
   }, []);
   return (
     <>
-      <header style={{ paddingTop: "18%" }}>
+      <header style={{ paddingTop: "4em" }}>
         <h1 className="header">Change User</h1>
       </header>
-      <div className="card">
-        <h5 className="card-header">User list</h5>
-        {isLoading ? <p>Users are loading</p> : null}
+      <div className="card" id="userList" style={{ margin: "auto" }}>
+        <h5 className="card-header" style={{ textAlign: "center" }}>
+          User list
+        </h5>
+        {isLoading ? (
+          <p style={{ textAlign: "center" }}>Users are loading</p>
+        ) : null}
         {userList.map((user) => {
           return <UserCard user={user} key={user.username} />;
         })}

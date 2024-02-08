@@ -10,11 +10,18 @@
   width: 70%;
 }
 
+#userList {
+  width: 40%;
+}
+
 @media (max-width: 600px) {
   header {
     padding-top: 13%;
   }
   #articlePageCard {
     width: 90%;
+  }
+  #userList {
+    width: 80%;
   }
 }

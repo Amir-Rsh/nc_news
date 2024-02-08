@@ -18,7 +18,6 @@ export default function ListOfArticles() {
   return (
     <>
       <HomeHeader />
-      {isLoading ? <h6>Loading the articles</h6> : null}
       <div
         className="btn-group"
         style={{
@@ -63,6 +62,9 @@ export default function ListOfArticles() {
           </Link>
         </ul>
       </div>
+      {isLoading ? (
+        <h6 style={{ textAlign: "center" }}>Loading the articles</h6>
+      ) : null}
       <section>
         <div className="container text-center">
           <div className="row" style={{ paddingBottom: "2%" }}>

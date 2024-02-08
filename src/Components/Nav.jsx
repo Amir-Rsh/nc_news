@@ -42,7 +42,11 @@ export default function Nav() {
                   const toggler = document.getElementById("togglerButton");
                   toggler.click();
                 }}
-                style={{ color: "black" }}
+                style={{
+                  color: "white",
+                  textAlign: "center",
+                  textDecoration: "none",
+                }}
               >
                 Home
               </li>
@@ -50,7 +54,7 @@ export default function Nav() {
             <Link to="/users">
               <li
                 className="nav-item"
-                style={{ color: "black" }}
+                style={{ color: "white", textAlign: "center" }}
                 onClick={() => {
                   const toggler = document.getElementById("togglerButton");
                   toggler.click();

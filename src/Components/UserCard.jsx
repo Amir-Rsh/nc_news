@@ -5,7 +5,7 @@ export default function UserCard({ user }) {
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
 
   return (
-    <div className="card-body">
+    <div className="card-body" style={{ textAlign: "center" }}>
       <h5 className="card-title">
         {user.username}{" "}
         <img
