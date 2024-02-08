@@ -5,3 +5,9 @@
 .card {
   padding-bottom: 4%;
 }
+
+@media (max-width: 600px) {
+  header {
+    padding-top: 13%;
+  }
+}

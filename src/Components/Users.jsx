@@ -13,7 +13,7 @@ export default function Users() {
   }, []);
   return (
     <>
-      <header>
+      <header style={{ paddingTop: "18%" }}>
         <h1 className="header">Change User</h1>
       </header>
       <div className="card">

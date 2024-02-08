@@ -2,7 +2,14 @@ import { Link } from "react-router-dom";
 
 export default function ArticleCard({ article }) {
   return (
-    <div className="card h-100" style={{ width: 18 + "rem" }}>
+    <div
+      className="card h-100"
+      style={{
+        width: 24 + "rem",
+        backgroundColor: "lavender",
+        borderWidth: "15px",
+      }}
+    >
       <img
         src={article.article_img_url}
         className="card-img-top"

@@ -5,11 +5,16 @@ import UserContext from "../Contexts/UserContext";
 export default function Nav() {
   const { loggedInUser } = useContext(UserContext);
   return (
-    <nav className="navbar bg-primary" data-bs-theme="dark">
+    <nav
+      className="navbar bg-primary"
+      data-bs-theme="dark"
+      style={{ position: "fixed", zIndex: "1000", width: "100%" }}
+    >
       <div className="container-fluid">
         <a className="navbar-brand">Northcoders News</a>
 
         <button
+          id="togglerButton"
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -31,12 +36,26 @@ export default function Nav() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <Link to="/">
-              <li className="nav-item" style={{ color: "black" }}>
+              <li
+                className="nav-item"
+                onClick={() => {
+                  const toggler = document.getElementById("togglerButton");
+                  toggler.click();
+                }}
+                style={{ color: "black" }}
+              >
                 Home
               </li>
             </Link>
             <Link to="/users">
-              <li className="nav-item" style={{ color: "black" }}>
+              <li
+                className="nav-item"
+                style={{ color: "black" }}
+                onClick={() => {
+                  const toggler = document.getElementById("togglerButton");
+                  toggler.click();
+                }}
+              >
                 Change user
               </li>
             </Link>

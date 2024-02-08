@@ -38,7 +38,12 @@ export default function ArticlePage() {
       <ArticleHeader title={content.title} author={content.author} />
 
       <div className="card" style={{ width: "70%", margin: "auto" }}>
-        <img src={content.article_img_url} className="card-img-top" alt="..." />
+        <img
+          src={content.article_img_url}
+          className="card-img-top"
+          alt={`picture for the article about ${content.topic}`}
+          style={{ borderWidth: "20px", borderStyle: "groove" }}
+        />
         <div className="card-body">
           <p className="card-text">{content.body}</p>
         </div>

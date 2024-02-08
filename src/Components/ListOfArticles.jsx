@@ -70,7 +70,7 @@ export default function ListOfArticles() {
               return (
                 <div
                   className="col-12 col-md-6 col-lg-4 d-flex justify-content-center"
-                  style={{ justifyContent: "center" }}
+                  style={{ justifyContent: "center", marginBottom: "3%" }}
                   key={article.article_id}
                 >
                   <ArticleCard article={article} />
