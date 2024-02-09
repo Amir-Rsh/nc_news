@@ -66,21 +66,21 @@ export default function ListOfArticles() {
           Topics
         </button>
         <ul className="dropdown-menu">
-          <Link to="/cooking">
+          <Link to="/topics/cooking">
             <li>
               <p className="dropdown-item" style={{ margin: "0" }}>
                 Cooking
               </p>
             </li>
           </Link>
-          <Link to="/football">
+          <Link to="/topics/football">
             <li>
               <p className="dropdown-item" style={{ margin: "0" }}>
                 Football
               </p>
             </li>
           </Link>
-          <Link to="/coding">
+          <Link to="/topics/coding">
             <li>
               <p className="dropdown-item" style={{ margin: "0" }}>
                 Coding

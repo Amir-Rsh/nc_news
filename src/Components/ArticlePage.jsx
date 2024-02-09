@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import Comments from "./Comments";
 
 export default function ArticlePage() {
+  const [isError, setIsError] = useState(false);
   const { article_id } = useParams();
   const [content, setContent] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -15,20 +16,26 @@ export default function ArticlePage() {
     });
   }, []);
   function handleUpvote() {
+    setIsError(false);
     setContent((cuurentContent) => {
       const voteChange = { ...cuurentContent };
       voteChange.votes += 1;
       return voteChange;
     });
-    voteArticle(article_id, 1);
+    voteArticle(article_id, 1).catch((err) => {
+      setIsError(true);
+    });
   }
   function handleDownvote() {
+    setIsError(false);
     setContent((cuurentContent) => {
       const voteChange = { ...cuurentContent };
       voteChange.votes -= 1;
       return voteChange;
     });
-    voteArticle(article_id, -1);
+    voteArticle(article_id, -1).catch((err) => {
+      setIsError(true);
+    });
   }
 
   return isLoading ? (
@@ -72,6 +79,11 @@ export default function ArticlePage() {
             </button>
           </li>
         </ul>
+        {isError ? (
+          <p style={{ textAlign: "center" }}>
+            your vote could not be registered at this moment
+          </p>
+        ) : null}
       </div>
       <Comments article_id={article_id} />
     </>
