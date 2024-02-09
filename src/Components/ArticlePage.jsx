@@ -3,18 +3,26 @@ import { getArticlesById, voteArticle } from "../../api";
 import ArticleHeader from "./ArticleHeader";
 import { useParams } from "react-router";
 import Comments from "./Comments";
+import ErrorPage from "./ErrorPage";
 
 export default function ArticlePage() {
+  const [error, setError] = useState(null);
   const [isError, setIsError] = useState(false);
   const { article_id } = useParams();
   const [content, setContent] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    getArticlesById(article_id).then(({ data: { article } }) => {
-      setContent(article);
-      setIsLoading(false);
-    });
+    setError(null);
+    getArticlesById(article_id)
+      .then(({ data: { article } }) => {
+        setContent(article);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   }, []);
+
   function handleUpvote() {
     setIsError(false);
     setContent((cuurentContent) => {
@@ -36,6 +44,14 @@ export default function ArticlePage() {
     voteArticle(article_id, -1).catch((err) => {
       setIsError(true);
     });
+  }
+
+  if (error) {
+    return (
+      <>
+        <ErrorPage message={error} />
+      </>
+    );
   }
 
   return isLoading ? (

@@ -3,8 +3,10 @@ import getArticles from "../../api";
 import ArticleCard from "./ArticleCard";
 import HomeHeader from "./HomeHeader";
 import { useEffect, useState } from "react";
+import ErrorPage from "./ErrorPage";
 
 export default function ListOfArticles() {
+  const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const { topic } = useParams();
   const [articles, setArticles] = useState([]);
@@ -34,13 +36,24 @@ export default function ListOfArticles() {
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(topic, sortByQuery, orderQuery).then(
-      ({ data: { articles } }) => {
+    getArticles(topic, sortByQuery, orderQuery)
+      .then(({ data: { articles } }) => {
         setArticles(articles);
         setIsLoading(false);
-      }
-    );
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   }, [topic, sortByQuery, orderQuery]);
+
+  if (error) {
+    return (
+      <>
+        <ErrorPage message={error} />
+      </>
+    );
+  }
+
   return (
     <>
       <HomeHeader />
