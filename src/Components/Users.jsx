@@ -3,13 +3,19 @@ import { getUsers } from "../../api";
 import UserCard from "./UserCard";
 
 export default function Users() {
+  const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [userList, setUserList] = useState([]);
   useEffect(() => {
-    getUsers().then(({ data: { users } }) => {
-      setUserList(users);
-      setIsLoading(false);
-    });
+    setIsError(false);
+    getUsers()
+      .then(({ data: { users } }) => {
+        setUserList(users);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsError(true);
+      });
   }, []);
   return (
     <>
@@ -22,6 +28,11 @@ export default function Users() {
         </h5>
         {isLoading ? (
           <p style={{ textAlign: "center" }}>Users are loading</p>
+        ) : null}
+        {isError ? (
+          <p style={{ textAlign: "center" }}>
+            Users could not be retrieved at this moment
+          </p>
         ) : null}
         {userList.map((user) => {
           return <UserCard user={user} key={user.username} />;

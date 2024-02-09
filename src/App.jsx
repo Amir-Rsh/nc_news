@@ -5,6 +5,7 @@ import ListOfArticles from "./Components/ListOfArticles";
 import ArticlePage from "./Components/ArticlePage";
 import UserContext from "./Contexts/UserContext";
 import Users from "./Components/Users";
+import ErrorPage from "./Components/ErrorPage";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({
@@ -19,11 +20,12 @@ function App() {
       <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
         <Nav />
         <Routes>
-          <Route path="/" element={<Navigate to="/articles" />} />
+          <Route exact path="/" element={<Navigate to="/articles" />} />
           <Route path="/articles" element={<ListOfArticles />} />
           <Route path="/articles/:article_id" element={<ArticlePage />} />
           <Route path="/users" element={<Users />} />
-          <Route path="/:topic" element={<ListOfArticles />} />
+          <Route path="/topics/:topic" element={<ListOfArticles />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </UserContext.Provider>
     </>
