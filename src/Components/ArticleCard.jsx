@@ -20,6 +20,7 @@ export default function ArticleCard({ article }) {
         <h6 className="card-title">Topic: {article.topic}</h6>
         <p className="card-text">Written by: {article.author}</p>
         <p className="card-text">Comment count: {article.comment_count}</p>
+        <p className="card-text">Votes: {article.votes}</p>
       </div>
 
       <Link to={`/articles/${article.article_id}`}>
