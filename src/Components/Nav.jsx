@@ -46,6 +46,7 @@ export default function Nav() {
                   color: "white",
                   textAlign: "center",
                   textDecoration: "none",
+                  paddingBottom: "1.5%",
                 }}
               >
                 Home

@@ -5,14 +5,27 @@ import HomeHeader from "./HomeHeader";
 import { useEffect, useState } from "react";
 
 export default function ListOfArticles() {
-  const [order, setOrder] = useState("desc");
-  const [sortBy, setSortBy] = useState("created_at");
+  const [searchParams, setSearchParams] = useSearchParams();
   const { topic } = useParams();
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const sortByQuery = searchParams.get("sort_by");
+  const orderQuery = searchParams.get("order");
+
+  const setOrder = (direction) => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("order", direction);
+    setSearchParams(newParams);
+  };
+
+  const setSort = (query) => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("sort_by", query);
+    setSearchParams(newParams);
+  };
 
   function handleSort(event) {
-    setSortBy(event.target.id);
+    setSort(event.target.id);
   }
 
   function handleOrder(event) {
@@ -21,11 +34,13 @@ export default function ListOfArticles() {
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(topic, sortBy, order).then(({ data: { articles } }) => {
-      setArticles(articles);
-      setIsLoading(false);
-    });
-  }, [topic, sortBy, order]);
+    getArticles(topic, sortByQuery, orderQuery).then(
+      ({ data: { articles } }) => {
+        setArticles(articles);
+        setIsLoading(false);
+      }
+    );
+  }, [topic, sortByQuery, orderQuery]);
   return (
     <>
       <HomeHeader />
@@ -51,21 +66,21 @@ export default function ListOfArticles() {
           Topics
         </button>
         <ul className="dropdown-menu">
-          <Link to="/topics/cooking">
+          <Link to="/cooking">
             <li>
               <p className="dropdown-item" style={{ margin: "0" }}>
                 Cooking
               </p>
             </li>
           </Link>
-          <Link to="/topics/football">
+          <Link to="/football">
             <li>
               <p className="dropdown-item" style={{ margin: "0" }}>
                 Football
               </p>
             </li>
           </Link>
-          <Link to="/topics/coding">
+          <Link to="/coding">
             <li>
               <p className="dropdown-item" style={{ margin: "0" }}>
                 Coding

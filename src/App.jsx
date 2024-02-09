@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Nav from "./Components/Nav";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import ListOfArticles from "./Components/ListOfArticles";
 import ArticlePage from "./Components/ArticlePage";
 import UserContext from "./Contexts/UserContext";
@@ -19,10 +19,11 @@ function App() {
       <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
         <Nav />
         <Routes>
-          <Route path="/" element={<ListOfArticles />} />
+          <Route path="/" element={<Navigate to="/articles" />} />
+          <Route path="/articles" element={<ListOfArticles />} />
           <Route path="/articles/:article_id" element={<ArticlePage />} />
           <Route path="/users" element={<Users />} />
-          <Route path="/topics/:topic" element={<ListOfArticles />} />
+          <Route path="/:topic" element={<ListOfArticles />} />
         </Routes>
       </UserContext.Provider>
     </>
