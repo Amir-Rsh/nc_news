@@ -1,20 +1,31 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import getArticles from "../../api";
 import ArticleCard from "./ArticleCard";
 import HomeHeader from "./HomeHeader";
 import { useEffect, useState } from "react";
 
 export default function ListOfArticles() {
+  const [order, setOrder] = useState("desc");
+  const [sortBy, setSortBy] = useState("created_at");
   const { topic } = useParams();
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  function handleSort(event) {
+    setSortBy(event.target.id);
+  }
+
+  function handleOrder(event) {
+    setOrder(event.target.id);
+  }
+
   useEffect(() => {
     setIsLoading(true);
-    getArticles(topic).then(({ data: { articles } }) => {
+    getArticles(topic, sortBy, order).then(({ data: { articles } }) => {
       setArticles(articles);
       setIsLoading(false);
     });
-  }, [topic]);
+  }, [topic, sortBy, order]);
   return (
     <>
       <HomeHeader />
@@ -31,6 +42,7 @@ export default function ListOfArticles() {
         }}
       >
         <button
+          style={{ color: "black" }}
           type="button"
           className="btn btn-success dropdown-toggle"
           data-bs-toggle="dropdown"
@@ -60,6 +72,87 @@ export default function ListOfArticles() {
               </p>
             </li>
           </Link>
+        </ul>
+        <button
+          style={{
+            marginLeft: "5px",
+            color: "black",
+            backgroundColor: "greenyellow",
+          }}
+          type="button"
+          className="btn btn-success dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Sort by
+        </button>
+        <ul className="dropdown-menu">
+          <li>
+            <p
+              className="dropdown-item"
+              onClick={handleSort}
+              style={{ margin: "0" }}
+              id="created_at"
+            >
+              Date
+            </p>
+          </li>
+          <li>
+            <p
+              className="dropdown-item"
+              onClick={handleSort}
+              style={{ margin: "0" }}
+              id="comment_count"
+            >
+              Comment count
+            </p>
+          </li>
+          <li>
+            <p
+              className="dropdown-item"
+              onClick={handleSort}
+              style={{ margin: "0" }}
+              id="votes"
+            >
+              votes
+            </p>
+          </li>
+        </ul>
+        <button
+          style={{
+            marginLeft: "5px",
+            backgroundColor: "lightgreen",
+
+            color: "black",
+          }}
+          type="button"
+          className="btn btn-success dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Order
+        </button>
+        <ul className="dropdown-menu">
+          <li>
+            <p
+              className="dropdown-item"
+              id="desc"
+              onClick={handleOrder}
+              style={{ margin: "0" }}
+            >
+              Descending
+            </p>
+          </li>
+          <li>
+            <p
+              className="dropdown-item"
+              id="asc"
+              onClick={handleOrder}
+              style={{ margin: "0" }}
+            >
+              Ascending
+            </p>
+          </li>
         </ul>
       </div>
       {isLoading ? (

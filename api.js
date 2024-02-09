@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export default function getArticles(topic) {
+export default function getArticles(topic, sort_by, order) {
   return axios.get("https://nc-news-by-amir.onrender.com/api/articles", {
-    params: { topic: topic },
+    params: { topic: topic, sort_by: sort_by, order: order },
   });
 }
 
