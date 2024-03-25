@@ -1,5 +1,5 @@
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import getArticles from "../../api";
+import getArticles, { getUserByUserId } from "../../api";
 import ArticleCard from "./ArticleCard";
 import HomeHeader from "./HomeHeader";
 import { useEffect, useState } from "react";
@@ -70,7 +70,11 @@ export default function ListOfArticles() {
         }}
       >
         <button
-          style={{ color: "black" }}
+          style={{
+            color: "black",
+            backgroundColor: "lightblue",
+            fontWeight: "bold",
+          }}
           type="button"
           className="btn btn-success dropdown-toggle"
           data-bs-toggle="dropdown"
@@ -105,7 +109,8 @@ export default function ListOfArticles() {
           style={{
             marginLeft: "5px",
             color: "black",
-            backgroundColor: "greenyellow",
+            backgroundColor: "lightblue",
+            fontWeight: "bold",
           }}
           type="button"
           className="btn btn-success dropdown-toggle"
@@ -149,8 +154,8 @@ export default function ListOfArticles() {
         <button
           style={{
             marginLeft: "5px",
-            backgroundColor: "lightgreen",
-
+            backgroundColor: "lightblue",
+            fontWeight: "bold",
             color: "black",
           }}
           type="button"
@@ -184,7 +189,18 @@ export default function ListOfArticles() {
         </ul>
       </div>
       {isLoading ? (
-        <h6 style={{ textAlign: "center" }}>Loading the articles</h6>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          {" "}
+          <h6 style={{ textAlign: "center", justifySelf: "center" }}>
+            Loading the articles
+          </h6>
+          <br />
+          <img
+            src="https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"
+            alt=""
+            style={{ margin: "auto", justifySelf: "center" }}
+          />
+        </div>
       ) : null}
       <section>
         <div className="container text-center">

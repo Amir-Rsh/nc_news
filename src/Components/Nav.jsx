@@ -1,72 +1,127 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../Contexts/UserContext";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../Firebase";
+import { getUserByUserId } from "../../api";
+import { signOut } from "firebase/auth";
 
 export default function Nav() {
-  const { loggedInUser } = useContext(UserContext);
-  return (
-    <nav
-      className="navbar bg-primary"
-      data-bs-theme="dark"
-      style={{ position: "fixed", zIndex: "1000", width: "100%" }}
-    >
-      <div className="container-fluid">
-        <a className="navbar-brand">Northcoders News</a>
+  const navigate = useNavigate();
+  const user = useAuthState(auth);
 
-        <button
-          id="togglerButton"
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <a className="navbar-brand">
-            Hi, {loggedInUser.username}
-            <img
-              src={loggedInUser.avatar_url}
-              style={{ width: "2rem", height: "2rem" }}
-              alt={`avatar for ${loggedInUser.username}`}
-            />
+  const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    if (user[0]) {
+      getUserByUserId(user[0].uid, setLoggedInUser).then(() => {
+        setIsLoading(false);
+      });
+    }
+  }, [user[0]]);
+
+  function handleLogOut() {
+    signOut(auth)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  return (
+    <>
+      {" "}
+      <nav
+        className="navbar bg-primary"
+        id="nav"
+        data-bs-theme="dark"
+        style={{
+          position: "fixed",
+          zIndex: "1000",
+          width: "100%",
+          margin: "0",
+          height: "60px",
+        }}
+      >
+        <div className="container-fluid">
+          <a
+            className="navbar-brand"
+            style={{
+              color: "black",
+              fontWeight: "bold",
+              paddingBottom: "20px",
+            }}
+          >
+            Northcoders News
           </a>
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <Link to="/">
-              <li
-                className="nav-item"
+
+          {isLoading ? (
+            <p
+              className="navbar-brand"
+              style={{
+                cursor: "default",
+                color: "black",
+
+                fontWeight: "bold",
+              }}
+            >
+              please
+              <span
                 onClick={() => {
-                  const toggler = document.getElementById("togglerButton");
-                  toggler.click();
+                  navigate("/");
                 }}
                 style={{
-                  color: "white",
+                  color: "black",
                   textAlign: "center",
-                  textDecoration: "none",
-                  paddingBottom: "1.5%",
+                  cursor: "pointer",
+                  marginLeft: "10px",
+                  marginRight: "10px",
+
+                  backgroundColor: "salmon",
+                  padding: "5px",
+                  borderRadius: "6%",
+                  fontWeight: "bold",
                 }}
               >
-                Home
-              </li>
-            </Link>
-            <Link to="/users">
-              <li
-                className="nav-item"
-                style={{ color: "white", textAlign: "center" }}
-                onClick={() => {
-                  const toggler = document.getElementById("togglerButton");
-                  toggler.click();
+                Log in{" "}
+              </span>
+              to comment
+            </p>
+          ) : (
+            <p
+              className="navbar-brand"
+              style={{
+                cursor: "default",
+                color: "black",
+
+                fontWeight: "bold",
+              }}
+            >
+              Hi, {loggedInUser.username}
+              <img
+                src={loggedInUser.avatar_url}
+                style={{ width: "2rem", height: "2rem" }}
+                alt={`avatar for ${loggedInUser.username}`}
+              />{" "}
+              <span
+                style={{
+                  color: "black",
+                  textAlign: "center",
+                  cursor: "pointer",
+                  marginLeft: "10px",
+                  backgroundColor: "salmon",
+                  padding: "5px",
+                  borderRadius: "6%",
                 }}
+                onClick={handleLogOut}
               >
-                Change user
-              </li>
-            </Link>
-          </ul>
+                Log out
+              </span>
+            </p>
+          )}
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }

@@ -3,28 +3,95 @@
 }
 
 .card {
-  padding-bottom: 4%;
+  padding-bottom: 20px;
+  border-radius: 5%;
+  font-weight: bold !important;
+}
+.card-img-top {
+  margin: auto;
+  width: 99%;
+  border-radius: 5%;
+  border-style: none !important;
 }
 
 #articlePageCard {
-  width: 70%;
+  width: 50%;
+  background-color: white;
+  padding: 10px;
+}
+.avatars {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.avatarPics {
+  border-radius: 10%;
 }
 
-#userList {
-  width: 40%;
+body {
+  background-color: rgba(1, 159, 159, 0.573);
+
+  font-weight: bold;
+  color: black;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 20px;
 }
 
-@media (max-width: 600px) {
-  header {
-    padding-top: 13%;
-  }
-  #articlePageCard {
-    width: 90%;
-  }
-  #userList {
-    width: 80%;
-  }
+#login {
+  width: 500px;
+  height: fit-content;
+  display: flex;
+  color: black;
+  flex-direction: column;
+  background-color: #002b5980;
+  padding: 15px 30px 20px 30px;
+  border-radius: 4%;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#loginButton {
+  margin: 20px auto auto auto;
+  width: fit-content;
+  background-color: salmon;
+  padding: 2px 20px 2px 20px;
+  border-radius: 6%;
+  border-color: transparent;
+  font-weight: bold;
+}
+@media only screen and (min-width: 470px) and (max-width: 575px) {
   .navbar-brand {
     font-size: medium;
+  }
+  #nav {
+    height: 50px !important;
+  }
+}
+@media only screen and (min-width: 384px) and (max-width: 469px) {
+  .navbar-brand {
+    font-size: small;
+  }
+  #nav {
+    height: 44px !important;
+  }
+}
+
+@media only screen and (max-width: 383px) {
+  .navbar-brand {
+    font-size: x-small;
+  }
+  #nav {
+    height: 44px !important;
+  }
+}
+
+#checker {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  to {
+    opacity: 0;
   }
 }
