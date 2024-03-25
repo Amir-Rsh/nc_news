@@ -38,6 +38,7 @@ export default function HomePage({ setLoggedInUser }) {
         } else if (err.message === "Firebase: Error (auth/missing-password).") {
           setPassError(true);
         }
+        setLogError(true);
       });
   }
   function handleChange(event) {
