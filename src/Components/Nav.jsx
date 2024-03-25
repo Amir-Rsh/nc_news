@@ -50,7 +50,7 @@ export default function Nav() {
             style={{
               color: "black",
               fontWeight: "bold",
-              paddingBottom: "20px",
+              paddingBottom: "30px",
             }}
           >
             Northcoders News
@@ -62,6 +62,7 @@ export default function Nav() {
               style={{
                 cursor: "default",
                 color: "black",
+                marginTop: "-11px",
 
                 fontWeight: "bold",
               }}
@@ -94,6 +95,7 @@ export default function Nav() {
               style={{
                 cursor: "default",
                 color: "black",
+                marginTop: "-7px",
 
                 fontWeight: "bold",
               }}
@@ -101,7 +103,12 @@ export default function Nav() {
               Hi, {loggedInUser.username}
               <img
                 src={loggedInUser.avatar_url}
-                style={{ width: "2rem", height: "2rem" }}
+                style={{
+                  width: "2rem",
+                  height: "2rem",
+                  borderRadius: "15%",
+                  marginLeft: "5px",
+                }}
                 alt={`avatar for ${loggedInUser.username}`}
               />{" "}
               <span

@@ -37,8 +37,9 @@ export default function HomePage({ setLoggedInUser }) {
           setLogError(true);
         } else if (err.message === "Firebase: Error (auth/missing-password).") {
           setPassError(true);
+        } else {
+          setLogError(true);
         }
-        setLogError(true);
       });
   }
   function handleChange(event) {
@@ -61,6 +62,7 @@ export default function HomePage({ setLoggedInUser }) {
         <img
           src="https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"
           alt=""
+          style={{ width: "300px" }}
         />
         <div>
           <form id="login" onSubmit={handleSignIn} action="">
