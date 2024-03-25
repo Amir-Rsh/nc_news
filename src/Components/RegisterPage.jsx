@@ -14,6 +14,7 @@ export default function RegisterPage() {
   const [userError, setUserError] = useState(false);
   const [userChecker, setUserChecker] = useState(false);
   const [userConfirmed, setUserConfirmed] = useState(false);
+  const [creating, setCreating] = useState(false);
 
   function handleUserExist(event) {
     setUserConfirmed(false);
@@ -39,21 +40,26 @@ export default function RegisterPage() {
     setEmailError(false);
     setEmailError2(false);
     setPassError(false);
+    setCreating(true);
 
     createUserWithEmailAndPassword(auth, details.email, details.password)
       .then((cred) => {
         console.log(cred.user);
+
         postUser(
           cred.user.uid,
           details.username,
           details.fullName,
           details.avatar_url,
-          navigate
+          navigate,
+          setCreating
         );
       })
 
       .catch((err) => {
         console.log(err.message);
+        setCreating(false);
+
         if (
           err.message ===
           "Firebase: Password should be at least 6 characters (auth/weak-password)."
@@ -110,7 +116,9 @@ export default function RegisterPage() {
               </>
             ) : null}
             {userConfirmed ? (
-              <p style={{ color: "green" }}>username is good to go</p>
+              <p style={{ color: "lightgreen", fontWeight: "bold" }}>
+                username is good to go
+              </p>
             ) : null}
             <label htmlFor="password">Password</label>
             <input required id="password" type="text" onChange={handleChange} />
@@ -208,11 +216,15 @@ export default function RegisterPage() {
                 onChange={handleSelect}
               />
             </div>
-            {
-              <button type="submit" id="loginButton">
-                Login
-              </button>
-            }
+
+            <button type="submit" id="loginButton">
+              sign up
+            </button>
+            {creating ? (
+              <p style={{ color: "lightgreen", fontWeight: "bold" }}>
+                creating your account. please wait
+              </p>
+            ) : null}
           </form>
         </div>
       </div>

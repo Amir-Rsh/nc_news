@@ -198,7 +198,7 @@ export default function ListOfArticles() {
           <img
             src="https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"
             alt=""
-            style={{ margin: "auto", justifySelf: "center" }}
+            style={{ margin: "auto", justifySelf: "center", width: "250px" }}
           />
         </div>
       ) : null}

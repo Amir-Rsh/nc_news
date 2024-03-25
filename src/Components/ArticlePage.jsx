@@ -74,16 +74,20 @@ export default function ArticlePage() {
   }
 
   return isLoading ? (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div
+      style={{ display: "flex", flexDirection: "column", marginTop: "100px" }}
+    >
       {" "}
-      <h6 style={{ textAlign: "center", justifySelf: "center" }}>
+      <h6
+        style={{ textAlign: "center", justifySelf: "center", color: "black" }}
+      >
         Loading the articles
       </h6>
       <br />
       <img
         src="https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"
         alt=""
-        style={{ margin: "auto", justifySelf: "center" }}
+        style={{ margin: "auto", justifySelf: "center", width: "250px" }}
       />
     </div>
   ) : (

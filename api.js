@@ -43,7 +43,14 @@ export function deleteComment(id) {
   );
 }
 
-export function postUser(uid, username, name, avatar_url, navigate) {
+export function postUser(
+  uid,
+  username,
+  name,
+  avatar_url,
+  navigate,
+  setCreating
+) {
   return axios
     .post(`https://nc-news-by-amir.onrender.com/api/users`, {
       user_id: uid,
@@ -55,6 +62,8 @@ export function postUser(uid, username, name, avatar_url, navigate) {
       navigate("/");
     })
     .catch((err) => {
+      setCreating(false);
+
       console.log(err);
     });
 }
