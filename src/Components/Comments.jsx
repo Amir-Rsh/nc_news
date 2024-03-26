@@ -50,7 +50,7 @@ export default function Comments({ article_id }) {
           return (
             <div
               className="card w-70 mb-3"
-              style={{ width: "70%", margin: "auto" }}
+              style={{ width: "70%", margin: "auto", borderRadius: "2.5%" }}
               key={comment.comment_id}
             >
               <div className="card-body">

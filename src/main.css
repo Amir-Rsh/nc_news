@@ -131,3 +131,10 @@ body {
     opacity: 0;
   }
 }
+
+.list-group-item {
+  width: 100%;
+  text-align: center;
+  justify-self: center;
+  background-color: transparent;
+}
