@@ -127,7 +127,7 @@ export default function ListOfArticles() {
             <p
               className="dropdown-item"
               onClick={handleSort}
-              style={{ margin: "0" }}
+              style={{ margin: "0", cursor: "pointer" }}
               id="created_at"
             >
               Date
@@ -137,7 +137,7 @@ export default function ListOfArticles() {
             <p
               className="dropdown-item"
               onClick={handleSort}
-              style={{ margin: "0" }}
+              style={{ margin: "0", cursor: "pointer" }}
               id="comment_count"
             >
               Comment count
@@ -147,7 +147,7 @@ export default function ListOfArticles() {
             <p
               className="dropdown-item"
               onClick={handleSort}
-              style={{ margin: "0" }}
+              style={{ margin: "0", cursor: "pointer" }}
               id="votes"
             >
               votes
@@ -173,7 +173,7 @@ export default function ListOfArticles() {
               className="dropdown-item"
               id="desc"
               onClick={handleOrder}
-              style={{ margin: "0" }}
+              style={{ margin: "0", cursor: "pointer" }}
             >
               Descending
             </p>
@@ -183,7 +183,7 @@ export default function ListOfArticles() {
               className="dropdown-item"
               id="asc"
               onClick={handleOrder}
-              style={{ margin: "0" }}
+              style={{ margin: "0", cursor: "pointer" }}
             >
               Ascending
             </p>

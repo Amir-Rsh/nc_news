@@ -103,34 +103,51 @@ export default function RegisterPage() {
               onChange={handleChange}
             />
             {userError ? (
-              <p style={{ color: "orange" }}>username already exists</p>
+              <p style={{ color: "orange", marginBottom: "0" }}>
+                username already exists
+              </p>
             ) : null}
             {userChecker ? (
               <>
-                <p id="checker" style={{ color: "orange" }}>
+                <p id="checker" style={{ color: "orange", marginBottom: "0" }}>
                   checking username availability
                 </p>
               </>
             ) : null}
             {userConfirmed ? (
-              <p style={{ color: "lightgreen", fontWeight: "bold" }}>
+              <p
+                style={{
+                  color: "lightgreen",
+                  fontWeight: "bold",
+                  marginBottom: "0",
+                }}
+              >
                 username is good to go
               </p>
             ) : null}
             <label htmlFor="password">Password</label>
-            <input required id="password" type="text" onChange={handleChange} />
+            <input
+              required
+              id="password"
+              type="password"
+              onChange={handleChange}
+            />
             {passError ? (
-              <p style={{ color: "orange" }}>
+              <p style={{ color: "orange", marginBottom: "0" }}>
                 password must contain at least 6 characters
               </p>
             ) : null}
             <label htmlFor="email">Email</label>
-            <input required id="email" type="text" onChange={handleChange} />
+            <input required id="email" type="email" onChange={handleChange} />
             {emailError ? (
-              <p style={{ color: "orange" }}>please enter a valid email</p>
+              <p style={{ color: "orange", marginBottom: "0" }}>
+                please enter a valid email
+              </p>
             ) : null}
             {emailError2 ? (
-              <p style={{ color: "orange" }}>email is already in use</p>
+              <p style={{ color: "orange", marginBottom: "0" }}>
+                email is already in use
+              </p>
             ) : null}
             <p style={{ marginBottom: "0px", marginTop: "5px" }}>
               Choose you avatar
@@ -218,7 +235,13 @@ export default function RegisterPage() {
               sign up
             </button>
             {creating ? (
-              <p style={{ color: "lightgreen", fontWeight: "bold" }}>
+              <p
+                style={{
+                  color: "lightgreen",
+                  fontWeight: "bold",
+                  marginBottom: "0",
+                }}
+              >
                 creating your account. please wait
               </p>
             ) : null}

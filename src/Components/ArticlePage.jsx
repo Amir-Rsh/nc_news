@@ -4,10 +4,8 @@ import ArticleHeader from "./ArticleHeader";
 import { useParams } from "react-router";
 import Comments from "./Comments";
 import ErrorPage from "./ErrorPage";
-import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../Firebase";
-import { Button } from "bootstrap";
 import UserContext from "../Contexts/UserContext";
 
 export default function ArticlePage() {
@@ -19,7 +17,6 @@ export default function ArticlePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
 
-  const navigate = useNavigate();
   const user = useAuthState(auth);
 
   useEffect(() => {
@@ -121,7 +118,11 @@ export default function ArticlePage() {
                 <button
                   type="button"
                   className="btn btn-success"
-                  style={{ width: "6.5rem", height: "2rem" }}
+                  style={{
+                    width: "6.5rem",
+                    height: "2rem",
+                    marginRight: "2px",
+                  }}
                   onClick={handleUpvote}
                 >
                   upvote
@@ -129,7 +130,11 @@ export default function ArticlePage() {
                 <button
                   type="button"
                   className="btn btn-danger"
-                  style={{ width: "6.5rem", height: "2rem" }}
+                  style={{
+                    width: "6.5rem",
+                    height: "2rem",
+                    marginLeft: "2px",
+                  }}
                   onClick={handleDownvote}
                 >
                   downvote
