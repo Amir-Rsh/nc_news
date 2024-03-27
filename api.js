@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export default function getArticles(topic, sort_by, order) {
   return axios.get("https://nc-news-by-amir.onrender.com/api/articles", {
     params: { topic: topic, sort_by: sort_by, order: order },
@@ -63,8 +62,6 @@ export function postUser(
     })
     .catch((err) => {
       setCreating(false);
-
-      console.log(err);
     });
 }
 
@@ -74,9 +71,7 @@ export function getUserByUserId(user_id, setLoggedInUser) {
     .then((response) => {
       setLoggedInUser(response.data.user);
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((err) => {});
 }
 
 export function checkUsername(

@@ -44,8 +44,6 @@ export default function RegisterPage() {
 
     createUserWithEmailAndPassword(auth, details.email, details.password)
       .then((cred) => {
-        console.log(cred.user);
-
         postUser(
           cred.user.uid,
           details.username,
@@ -57,7 +55,6 @@ export default function RegisterPage() {
       })
 
       .catch((err) => {
-        console.log(err.message);
         setCreating(false);
 
         if (

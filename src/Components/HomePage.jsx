@@ -16,19 +16,17 @@ export default function HomePage({ setLoggedInUser }) {
     setLogError(false);
     setEmailError(false);
     setPassError(false);
-    setRedirect(false);
+    setRedirect(true);
 
     event.preventDefault();
     signInWithEmailAndPassword(auth, userInput.email, userInput.password)
       .then((cred) => {
-        setRedirect(true);
-        console.log(cred.user);
         getUserByUserId(cred.user.uid, setLoggedInUser).then(() => {
           navigate("/articles");
         });
       })
       .catch((err) => {
-        console.log(err.message);
+        setRedirect(false);
         if (err.message === "Firebase: Error (auth/missing-email).") {
           setEmailError(true);
         } else if (
@@ -67,9 +65,19 @@ export default function HomePage({ setLoggedInUser }) {
         <div>
           <form id="login" onSubmit={handleSignIn} action="">
             <label htmlFor="email">Email</label>
-            <input id="email" type="text" onChange={handleChange} />
+            <input
+              id="email"
+              type="text"
+              onChange={handleChange}
+              onBlur={handleChange}
+            />
             <label htmlFor="password">Password</label>
-            <input id="password" type="text" onChange={handleChange} />
+            <input
+              id="password"
+              type="text"
+              onChange={handleChange}
+              onBlur={handleChange}
+            />
             <button id="loginButton">Login</button>
             {logError ? (
               <p style={{ color: "orange" }}>your details are incorrect</p>
