@@ -12,6 +12,7 @@ export default function Nav() {
 
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     if (user[0]) {
       getUserByUserId(user[0].uid, setLoggedInUser).then(() => {

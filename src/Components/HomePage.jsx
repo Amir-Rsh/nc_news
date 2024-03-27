@@ -60,7 +60,11 @@ export default function HomePage({ setLoggedInUser }) {
         <img
           src="https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"
           alt=""
-          style={{ width: "300px" }}
+          style={{
+            width: "300px",
+            borderRadius: "100%",
+            borderWidth: "100px",
+          }}
         />
         <div>
           <form id="login" onSubmit={handleSignIn} action="">
