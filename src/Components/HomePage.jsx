@@ -116,6 +116,7 @@ export default function HomePage({ setLoggedInUser }) {
                   here
                 </Link>
               </span>
+              <br />
               <span style={{ marginBottom: "0" }}>or</span>
             </p>
             <p>
