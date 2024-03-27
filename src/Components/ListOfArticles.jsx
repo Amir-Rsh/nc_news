@@ -83,21 +83,24 @@ export default function ListOfArticles() {
           Topics
         </button>
         <ul className="dropdown-menu">
-          <Link to="/topics/cooking">
+          <Link to="/topics/cooking" style={{ textDecoration: "none" }}>
             <li>
-              <p className="dropdown-item" style={{ margin: "0" }}>
+              <p
+                className="dropdown-item"
+                style={{ margin: "0", textDecoration: "none" }}
+              >
                 Cooking
               </p>
             </li>
           </Link>
-          <Link to="/topics/football">
+          <Link to="/topics/football" style={{ textDecoration: "none" }}>
             <li>
               <p className="dropdown-item" style={{ margin: "0" }}>
                 Football
               </p>
             </li>
           </Link>
-          <Link to="/topics/coding">
+          <Link to="/topics/coding" style={{ textDecoration: "none" }}>
             <li>
               <p className="dropdown-item" style={{ margin: "0" }}>
                 Coding
@@ -107,10 +110,10 @@ export default function ListOfArticles() {
         </ul>
         <button
           style={{
-            marginLeft: "5px",
             color: "black",
             backgroundColor: "lightblue",
             fontWeight: "bold",
+            margin: "5px",
           }}
           type="button"
           className="btn btn-success dropdown-toggle"
@@ -153,10 +156,9 @@ export default function ListOfArticles() {
         </ul>
         <button
           style={{
-            marginLeft: "5px",
+            color: "black",
             backgroundColor: "lightblue",
             fontWeight: "bold",
-            color: "black",
           }}
           type="button"
           className="btn btn-success dropdown-toggle"

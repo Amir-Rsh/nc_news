@@ -84,28 +84,47 @@ export default function HomePage({ setLoggedInUser }) {
             />
             <button id="loginButton">Login</button>
             {logError ? (
-              <p style={{ color: "orange" }}>your details are incorrect</p>
+              <p style={{ color: "orange", marginBottom: "0" }}>
+                your details are incorrect
+              </p>
             ) : null}
             {emailError ? (
-              <p style={{ color: "orange" }}>please re-enter your email</p>
+              <p style={{ color: "orange", marginBottom: "0" }}>
+                please re-enter your email
+              </p>
             ) : null}
             {passError ? (
-              <p style={{ color: "orange" }}>
+              <p style={{ color: "orange", marginBottom: "0" }}>
                 please input the correct password
               </p>
             ) : null}
             {redirect ? (
-              <p style={{ color: "lightgreen", fontWeight: "bold" }}>
+              <p
+                style={{
+                  color: "lightgreen",
+                  fontWeight: "bold",
+                  marginBottom: "0",
+                }}
+              >
                 logging you in please wait
               </p>
             ) : null}
-            <p style={{ marginTop: "10px" }}>
+            <p style={{ marginTop: "10px", marginBottom: "0" }}>
               Don't have an account? Register{" "}
               <span>
                 <Link style={{ color: "black" }} to={"/signup"}>
                   here
                 </Link>
               </span>
+              <p style={{ marginBottom: "0" }}>or</p>
+            </p>
+            <p>
+              <span>
+                <Link style={{ color: "black" }} to={"/articles"}>
+                  Continue
+                </Link>
+              </span>{" "}
+              as guest{" "}
             </p>
           </form>
         </div>

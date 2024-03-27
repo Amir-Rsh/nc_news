@@ -26,7 +26,6 @@ function App() {
               </>
             }
           />
-          <Route path="/articles" element={<ListOfArticles />} />
           <Route
             path="/articles/:article_id"
             element={
@@ -36,7 +35,15 @@ function App() {
               </>
             }
           />
-          <Route path="/topics/:topic" element={<ListOfArticles />} />
+          <Route
+            path="/topics/:topic"
+            element={
+              <>
+                <Nav />
+                <ListOfArticles />
+              </>
+            }
+          />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </UserContext.Provider>
