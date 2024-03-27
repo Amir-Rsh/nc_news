@@ -37,7 +37,7 @@ export default function Nav() {
         data-bs-theme="dark"
         style={{
           position: "fixed",
-          zIndex: "1000",
+          zIndex: "10",
           width: "100%",
           margin: "0",
           height: "60px",

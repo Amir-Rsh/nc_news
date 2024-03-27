@@ -75,6 +75,10 @@ body {
   #login {
     width: 400px;
   }
+  #backButton {
+    font-size: medium;
+    margin-top: 55px !important;
+  }
 }
 @media only screen and (min-width: 384px) and (max-width: 469px) {
   .navbar-brand {
@@ -93,6 +97,10 @@ body {
   .avatars {
     margin-left: 3px;
     margin-right: 3px;
+  }
+  #backButton {
+    font-size: small;
+    margin-top: 55px !important;
   }
 }
 
@@ -119,6 +127,10 @@ body {
     border-radius: 10%;
     width: 35px;
     height: 35px;
+  }
+  #backButton {
+    font-size: x-small;
+    margin-top: 55px !important;
   }
 }
 

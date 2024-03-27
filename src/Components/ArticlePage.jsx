@@ -7,6 +7,7 @@ import ErrorPage from "./ErrorPage";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../Firebase";
 import UserContext from "../Contexts/UserContext";
+import { Link } from "react-router-dom";
 
 export default function ArticlePage() {
   const [error, setError] = useState(null);
@@ -89,6 +90,27 @@ export default function ArticlePage() {
     </div>
   ) : (
     <>
+      <Link to="/articles">
+        <button
+          id="backButton"
+          style={{
+            color: "black",
+            textAlign: "center",
+            cursor: "pointer",
+            marginLeft: "10px",
+            marginTop: "70px",
+            margin: "70px 0 5px 10px",
+            borderStyle: "solid",
+            backgroundColor: "salmon",
+            borderColor: "transparent",
+            padding: "5px",
+            borderRadius: "7%",
+            fontWeight: "bold",
+          }}
+        >
+          Back to articles
+        </button>
+      </Link>
       <ArticleHeader title={content.title} author={content.author} />
 
       <div className="card" id="articlePageCard" style={{ margin: "auto" }}>

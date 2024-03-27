@@ -5,18 +5,23 @@ export default function ErrorPage({ message }) {
   return message ? (
     <h5 style={{ textAlign: "center", paddingTop: "20%" }}>{message}</h5>
   ) : (
-    <h5 style={{ textAlign: "center", paddingTop: "20%" }}>
-      This page does not exist{" "}
-      <span
+    <>
+      <h5 style={{ textAlign: "center", paddingTop: "20%" }}>
+        This page does not exist <br />
+      </h5>
+      <p
         onClick={() => {
           navigate("/articles");
         }}
         style={{
           color: "black",
-          textAlign: "center",
+          // textAlign: "center",
           cursor: "pointer",
-          marginLeft: "10px",
-          marginRight: "10px",
+          marginRight: "auto",
+          marginLeft: "auto",
+
+          width: "fit-content",
+          justifySelf: "center",
 
           backgroundColor: "salmon",
           padding: "5px",
@@ -25,7 +30,7 @@ export default function ErrorPage({ message }) {
         }}
       >
         Go to articles{" "}
-      </span>
-    </h5>
+      </p>
+    </>
   );
 }
