@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-require("dotenv").config();
+import { config } from "dotenv";
 
 config({ path: "../.env.production" });
 
@@ -12,6 +12,6 @@ const firebaseConfig = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
 };
-
+console.log(firebaseConfig);
 initializeApp(firebaseConfig);
 export const auth = getAuth();
