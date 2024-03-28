@@ -1,17 +1,14 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { config } from "dotenv";
-
-config({ path: "../.env.production" });
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.FIREBASE_APP_ID,
+  apiKey: "AIzaSyCEwNITYzlnFwqAfFpYDsnzzG1ScByPRNo",
+  authDomain: "nc-news-682dd.firebaseapp.com",
+  projectId: "nc-news-682dd",
+  storageBucket: "nc-news-682dd.appspot.com",
+  messagingSenderId: "1086018292157",
+  appId: "1:1086018292157:web:0a99a19c4bd402313eaad4",
 };
-console.log(firebaseConfig);
+
 initializeApp(firebaseConfig);
 export const auth = getAuth();
