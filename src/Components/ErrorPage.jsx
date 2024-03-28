@@ -15,7 +15,6 @@ export default function ErrorPage({ message }) {
         }}
         style={{
           color: "black",
-          // textAlign: "center",
           cursor: "pointer",
           marginRight: "auto",
           marginLeft: "auto",

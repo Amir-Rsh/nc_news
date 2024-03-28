@@ -78,7 +78,7 @@ export default function HomePage({ setLoggedInUser }) {
             <label htmlFor="password">Password</label>
             <input
               id="password"
-              type="text"
+              type="password"
               onChange={handleChange}
               onBlur={handleChange}
             />
