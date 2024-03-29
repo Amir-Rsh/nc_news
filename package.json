@@ -16,6 +16,7 @@
     "firebase": "^10.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-error-overlay": "6.0.9",
     "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "^6.22.0"
   },
@@ -27,6 +28,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "process": "^0.11.10",
     "vite": "^5.0.8"
   }
 }
