@@ -13,7 +13,7 @@ function App() {
   //testing env
   useEffect(() => {
     console.log("hey");
-    console.log(process.env);
+    console.log(import.meta.env);
   }, []);
   return (
     <>
