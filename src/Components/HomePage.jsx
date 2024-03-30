@@ -5,7 +5,7 @@ import { auth } from "../Firebase";
 import { getUserByUserId } from "../../api";
 
 export default function HomePage({ setLoggedInUser }) {
-  console.log(process.env.REACT_APP_API_KEY);
+  console.log(process.env);
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState({});
   const [logError, setLogError] = useState(false);
