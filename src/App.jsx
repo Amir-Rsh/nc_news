@@ -9,9 +9,6 @@ import HomePage from "./Components/HomePage";
 import RegisterPage from "./Components/RegisterPage";
 
 function App() {
-  const myEnvVar = REACT_APP_API_KEY;
-  console.log(myEnvVar);
-
   const [loggedInUser, setLoggedInUser] = useState({});
   return (
     <>

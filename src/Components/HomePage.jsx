@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../Firebase";
 import { getUserByUserId } from "../../api";
@@ -17,6 +17,12 @@ export default function HomePage({ setLoggedInUser }) {
     setEmailError(false);
     setPassError(false);
     setRedirect(true);
+
+    //testing env
+    useEffect(() => {
+      const myEnvVar = process.env;
+      console.log(myEnvVar);
+    }, []);
 
     event.preventDefault();
     signInWithEmailAndPassword(auth, userInput.email, userInput.password)
