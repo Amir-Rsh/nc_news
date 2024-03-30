@@ -5,6 +5,7 @@ import { auth } from "../Firebase";
 import { getUserByUserId } from "../../api";
 
 export default function HomePage({ setLoggedInUser }) {
+  console.log(process.env.REACT_APP_API_KEY);
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState({});
   const [logError, setLogError] = useState(false);
@@ -49,7 +50,6 @@ export default function HomePage({ setLoggedInUser }) {
   }
   return (
     <>
-      <p>{process.env.REACT_APP_API_KEY}</p>
       <div
         style={{
           margin: "90px auto auto auto",
