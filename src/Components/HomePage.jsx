@@ -18,12 +18,6 @@ export default function HomePage({ setLoggedInUser }) {
     setPassError(false);
     setRedirect(true);
 
-    //testing env
-    useEffect(() => {
-      console.log("hey");
-      console.log(process.env);
-    }, []);
-
     event.preventDefault();
     signInWithEmailAndPassword(auth, userInput.email, userInput.password)
       .then((cred) => {

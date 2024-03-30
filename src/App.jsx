@@ -10,6 +10,11 @@ import RegisterPage from "./Components/RegisterPage";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
+  //testing env
+  useEffect(() => {
+    console.log("hey");
+    console.log(process.env);
+  }, []);
   return (
     <>
       <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
