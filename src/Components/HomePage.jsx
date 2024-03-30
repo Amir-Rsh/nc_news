@@ -20,8 +20,8 @@ export default function HomePage({ setLoggedInUser }) {
 
     //testing env
     useEffect(() => {
-      const myEnvVar = process.env;
-      console.log(myEnvVar);
+      console.log("hey");
+      console.log(process.env);
     }, []);
 
     event.preventDefault();
