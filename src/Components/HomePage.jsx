@@ -5,6 +5,7 @@ import { auth } from "../Firebase";
 import { getUserByUserId } from "../../api";
 
 export default function HomePage({ setLoggedInUser }) {
+  console.log(import.meta.env);
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState({});
   const [logError, setLogError] = useState(false);

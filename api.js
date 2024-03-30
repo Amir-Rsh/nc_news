@@ -62,6 +62,7 @@ export function postUser(
     })
     .catch((err) => {
       setCreating(false);
+      console.log(err);
     });
 }
 
