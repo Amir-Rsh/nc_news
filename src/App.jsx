@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Nav from "./Components/Nav";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ListOfArticles from "./Components/ListOfArticles";
@@ -10,11 +10,7 @@ import RegisterPage from "./Components/RegisterPage";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
-  //testing env
-  useEffect(() => {
-    console.log("hey");
-    console.log(import.meta.env);
-  }, []);
+
   return (
     <>
       <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>

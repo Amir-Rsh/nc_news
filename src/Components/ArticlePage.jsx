@@ -16,7 +16,7 @@ export default function ArticlePage() {
   const [content, setContent] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+  const { setLoggedInUser } = useContext(UserContext);
 
   const user = useAuthState(auth);
 
