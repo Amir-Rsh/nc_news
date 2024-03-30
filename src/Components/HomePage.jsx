@@ -49,6 +49,7 @@ export default function HomePage({ setLoggedInUser }) {
   }
   return (
     <>
+      <p>{process.env.REACT_APP_API_KEY}</p>
       <div
         style={{
           margin: "90px auto auto auto",
