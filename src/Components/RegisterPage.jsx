@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { auth } from "../Firebase";
 import { checkUsername, postUser } from "../../api";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,9 @@ export default function RegisterPage() {
   const [userChecker, setUserChecker] = useState(false);
   const [userConfirmed, setUserConfirmed] = useState(false);
   const [creating, setCreating] = useState(false);
+  const [passCheck, setPassCheck] = useState(false);
+  const regexPassword =
+    /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&_-])[A-Za-z\d@$!%*?&_-]{6,}$/g;
 
   function handleUserExist(event) {
     setUserConfirmed(false);
@@ -39,43 +42,55 @@ export default function RegisterPage() {
     setEmailError(false);
     setEmailError2(false);
     setPassError(false);
-    setCreating(true);
+    if (passCheck) {
+      alert("please use appropriate password");
+    } else {
+      setCreating(true);
 
-    createUserWithEmailAndPassword(auth, details.email, details.password)
-      .then((cred) => {
-        postUser(
-          cred.user.uid,
-          details.username,
-          details.fullName,
-          details.avatar_url,
-          navigate,
-          setCreating
-        );
-      })
+      createUserWithEmailAndPassword(auth, details.email, details.password)
+        .then((cred) => {
+          postUser(
+            cred.user.uid,
+            details.username,
+            details.fullName,
+            details.avatar_url,
+            navigate,
+            setCreating
+          );
+        })
 
-      .catch((err) => {
-        setCreating(false);
+        .catch((err) => {
+          setCreating(false);
 
-        if (
-          err.message ===
-          "Firebase: Password should be at least 6 characters (auth/weak-password)."
-        ) {
-          setPassError(true);
-        }
-        if (err.message === "Firebase: Error (auth/invalid-email).") {
-          setEmailError(true);
-        }
-        if (err.message === "Firebase: Error (auth/email-already-in-use).") {
-          setEmailError2(true);
-        }
-      });
+          if (
+            err.message ===
+            "Firebase: Password should be at least 6 characters (auth/weak-password)."
+          ) {
+            setPassError(true);
+          }
+          if (err.message === "Firebase: Error (auth/invalid-email).") {
+            setEmailError(true);
+          }
+          if (err.message === "Firebase: Error (auth/email-already-in-use).") {
+            setEmailError2(true);
+          }
+        });
+    }
   }
+
   function handleChange(event) {
+    const password = document.getElementById("password").value;
+
     setDetails((currentDetails) => {
       const newDetails = { ...currentDetails };
       newDetails[event.target.id] = event.target.value;
       return newDetails;
     });
+    if (password && !regexPassword.test(password)) {
+      setPassCheck(true);
+    } else {
+      setPassCheck(false);
+    }
   }
 
   return (
@@ -134,6 +149,11 @@ export default function RegisterPage() {
             {passError ? (
               <p style={{ color: "orange", marginBottom: "0" }}>
                 password must contain at least 6 characters
+              </p>
+            ) : null}
+            {passCheck ? (
+              <p style={{ color: "orange", marginBottom: "0" }}>
+                minimum 6 characters including symbols and numbers
               </p>
             ) : null}
             <label htmlFor="email">Email</label>
